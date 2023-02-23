@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from 'cors';
 
 import userRoutes from './routes/users.js'
+import QuestionRoutes from './routes/Questions.js'
 
 
 import dotenv from 'dotenv'
@@ -22,6 +23,7 @@ app.get('/',(req, res) => {
 })
 
 app.use('/user',userRoutes)
+app.use('/questions',QuestionRoutes)
 
 const PORT = process.env.PORT || 5000
 

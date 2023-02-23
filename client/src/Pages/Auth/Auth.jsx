@@ -10,7 +10,7 @@ import './Auth.css'
 
 const Auth = () => {
 
-        const [isSignup, setIsSignup]= useState(true)
+        const [isSignup, setIsSignup]= useState(false)
         const [name, setName]= useState('')
         const [email, setEmail]= useState('')
         const [password, setPassword]= useState('')
