@@ -5,6 +5,7 @@ import User from '../models/auth.js'
 
 export const signup= async (req,res) =>{
     const {name, email,password}= req.body;
+    
     try{
         const existingUser= await User.findOne({email})
         if(existingUser){
@@ -32,8 +33,8 @@ export const login= async (req,res) =>{
         if(!isPasswordCrt){
             res.status(404).json({message: "Invalid password"})
         }
-        const token= jwt.sign({email: newUser.email , id: newUser._id}, "test", { expiresIn:'1h'} )
-        res.status(200).json({result:newUser, token})
+        const token= jwt.sign({email: existingUser.email , id: existingUser._id}, "test", { expiresIn:'1h'} )
+        res.status(200).json({result:existingUser, token})
        
     }catch(error){
         res.status(500).json("Something went wrong...")

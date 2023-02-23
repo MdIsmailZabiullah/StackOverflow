@@ -33,7 +33,7 @@ const Auth = () => {
                 }
                 dispatch(signup({name, email, password}, navigate))
             }else{
-                dispatch(login({email, password}, navigate))
+                dispatch(login({email, password} , navigate))
             }
         }    
     return (

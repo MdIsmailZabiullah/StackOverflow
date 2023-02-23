@@ -25,7 +25,7 @@ app.use('/user',userRoutes)
 
 const PORT = process.env.PORT || 5000
 
-const CONNECTION_URL= "mongodb+srv://admin:admin@stackoverflow.ab2r52z.mongodb.net/?retryWrites=true&w=majority"
+const CONNECTION_URL= "mongodb+srv://Ismail:mlpgV16RCDJ1W6nt@stackoverflow.ab2r52z.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.set('strictQuery', false);
 mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true })
