@@ -14,14 +14,27 @@ const [questionTitle, setQuestionTitle]= useState('')
 const [questionBody, setQuestionBody]= useState('')
 const [questionTags, setQuestionTags]= useState('')
 
+
+
 const dispatch= useDispatch()
-const user= useSelector((state) => (state.currentUserreducer))
+const User= useSelector((state) => (state.currentUserReducer))
+
 const navigate = useNavigate()
 
-const handleSubmit= (e) =>{
+const handleSubmit = (e) => {
   e.preventDefault()
-  // console.log({questionTitle, questionBody, questionTags})
-  dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: user.result.name }, navigate))
+  // console.log({questionTitle,questionBody,questionTags})
+  // const author = User.result.name
+  // console.log({author})
+  dispatch(askQuestion({questionTitle,questionBody,questionTags,userPosted: User.result.name },navigate))
+  console.log({questionTitle,questionBody,questionTags, userPosted: User.result.name})
+}
+
+
+const handleEnter= (e) =>{
+  if(e.key === 'Enter'){
+    setQuestionBody(questionBody + "\n")
+  }
 }
 
   return (
@@ -33,12 +46,12 @@ const handleSubmit= (e) =>{
                     <label htmlFor="ques-title">
                                 <h4>Title</h4>
                                 <p>Enter the title</p>
-                                <input type="text" id='ques-title' placeholder='for e.g- What is array?' onChange={(e) =>{setQuestionTitle(e.target.value)}} />
+                                <input type="text" id='ques-title' onChange={(e) => {setQuestionTitle(e.target.value)}} placeholder='for e.g- What is array?'  />
                         </label>
                         <label htmlFor="ques-body">
                                 <h4>Body</h4>
                                 <p>Enter the title</p>
-                                <textarea name="" id="ques-body" onChange={(e) =>{setQuestionBody(e.target.value)}} cols="30" rows="10" ></textarea>
+                                <textarea name="" id="ques-body" onChange={(e) =>{setQuestionBody(e.target.value)}} onKeyDown={handleEnter} cols="30" rows="10" ></textarea>
                         </label>
                         <label htmlFor="ques-tags">
                                 <h4>Tags</h4>
@@ -46,8 +59,9 @@ const handleSubmit= (e) =>{
                                 <input type="text" id='ques-tags' placeholder='for e.g-  C, C++' onChange={(e) =>{setQuestionTags(e.target.value.split(" "))}} />
                         </label>
                 </div>
+              <input type="submit"  value='Review your Question' className='review-btn'/>
             </form>
-            <input type="submit"  value='Review your Question' className='review-btn'/>
+            
         </div>
     </div>
   )
