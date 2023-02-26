@@ -23,11 +23,10 @@ const navigate = useNavigate()
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  // console.log({questionTitle,questionBody,questionTags})
   // const author = User.result.name
   // console.log({author})
   dispatch(askQuestion({questionTitle,questionBody,questionTags,userPosted: User.result.name },navigate))
-  console.log({questionTitle,questionBody,questionTags, userPosted: User.result.name})
+  // console.log({questionTitle,questionBody,questionTags, userPosted: User.result.name})
 }
 
 
