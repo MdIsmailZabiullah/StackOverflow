@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import Question from '../models/Questions.js'
 
 export const AskQuestion= async (req, res) => {
-    const postQuestionData= req.boby;
+    const postQuestionData= req.body;
     const postQuestion= new Question({...postQuestionData, userId: req.userId});
     try{
         await postQuestion.save();
