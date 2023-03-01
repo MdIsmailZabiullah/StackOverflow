@@ -6,79 +6,82 @@ import downvote from '../../assets/sort-down.svg'
 import './QuestionDetails.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
+import {useSelector} from 'react-redux'
 
 const QuestionDetails = () => {
+  
     const {id}= useParams()
+    const questionList= useSelector(state => state.questionsReducer)
     
-    var questionList=[
-        {
-          _id:'1',
-          upVotes: 3,
-          downVotes: 2,
-          noOfAnswer: 1,
-          questionTitle: "What is a function ?",
-          questionBody: "It mean to be",
-          questionTags:['c','java'],
-          userPosted: "Isu",
-          askedOn:"1 jun",
-          userId: 1,
-          answer:[
-            {
-              answerBody:"answer",
-              userAnswered:"Khalid",
-              answeredOn:"1 jun",
-              userId: 2
-            }
-          ]
-        },
-        {
-          _id:'2',
-          upVotes: 3,
-          downVotes: 2,
-          noOfAnswer: 1,
-          questionTitle: "What is an array ?",
-          questionBody: "It mean to be",
-          questionTags:['c','java'],
-          userPosted: "Khalid",
-          askedOn:"1 jun",
-          userId: 2,
-          answer:[
-            {
-              answerBody:"answer",
-              userAnswered:"Isu",
-              answeredOn:"1 jun",
-              userId: 1
-            }
-          ]
-        },{
-          _id:'3',
-          upVotes: 3,
-          downVotes: 2,
-          noOfAnswer: 1,
-          questionTitle: "What is main() methode ?",
-          questionBody: "It mean to be",
-          questionTags:['c','java'],
-          userPosted: "Kyara",
-          askedOn:"1 jun",
-          userId: 3,
-          answer:[
-            {
-              answerBody:"answer",
-              userAnswered:"khalid",
-              answeredOn:"1 jun",
-              userId: 2
-            }
-          ]
-        }
-      ]
+    // var questionList=[
+    //     {
+    //       _id:'1',
+    //       upVotes: 3,
+    //       downVotes: 2,
+    //       noOfAnswer: 1,
+    //       questionTitle: "What is a function ?",
+    //       questionBody: "It mean to be",
+    //       questionTags:['c','java'],
+    //       userPosted: "Isu",
+    //       askedOn:"1 jun",
+    //       userId: 1,
+    //       answer:[
+    //         {
+    //           answerBody:"answer",
+    //           userAnswered:"Khalid",
+    //           answeredOn:"1 jun",
+    //           userId: 2
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       _id:'2',
+    //       upVotes: 3,
+    //       downVotes: 2,
+    //       noOfAnswer: 1,
+    //       questionTitle: "What is an array ?",
+    //       questionBody: "It mean to be",
+    //       questionTags:['c','java'],
+    //       userPosted: "Khalid",
+    //       askedOn:"1 jun",
+    //       userId: 2,
+    //       answer:[
+    //         {
+    //           answerBody:"answer",
+    //           userAnswered:"Isu",
+    //           answeredOn:"1 jun",
+    //           userId: 1
+    //         }
+    //       ]
+    //     },{
+    //       _id:'3',
+    //       upVotes: 3,
+    //       downVotes: 2,
+    //       noOfAnswer: 1,
+    //       questionTitle: "What is main() methode ?",
+    //       questionBody: "It mean to be",
+    //       questionTags:['c','java'],
+    //       userPosted: "Kyara",
+    //       askedOn:"1 jun",
+    //       userId: 3,
+    //       answer:[
+    //         {
+    //           answerBody:"answer",
+    //           userAnswered:"khalid",
+    //           answeredOn:"1 jun",
+    //           userId: 2
+    //         }
+    //       ]
+    //     }
+    //   ]
   return (
     <div className='question-details-page'>
       {
-        questionList === null ?
+        questionList.data === null ?
         <h1>Loading...</h1>:
         <>
             {
-                questionList.filter(question => question._id === id).map(question => (
+                questionList.data.filter(question => question._id === id).map(question => (
                     <div key={question._id}>
                         <section className='question-details-container'>
                           <h1>{question.questionTitle}</h1>

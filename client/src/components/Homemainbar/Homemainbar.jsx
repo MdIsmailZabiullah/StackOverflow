@@ -3,6 +3,8 @@ import {  useLocation, useNavigate } from 'react-router-dom'
 import './Homemainbar.css'
 import QuestionList from './QuestionList'
 
+import {useSelector} from 'react-redux'
+
 
 
 const Homemainbar = () => {
@@ -20,67 +22,72 @@ const Homemainbar = () => {
     }
   }
 
-  var questionList=[
-    {
-      _id:'1',
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswer: 1,
-      questionTitle: "What is a function ?",
-      questionBody: "It mean to be",
-      questionTags:['c','java'],
-      userPosted: "Isu",
-      askedOn:"1 jun",
-      userId: 1,
-      answer:[
-        {
-          answerBody:"answer",
-          userAnswered:"Kyara",
-          answeredOn:"1 jun",
-          userId: 3
-        }
-      ]
-    },
-    {
-      _id:'2',
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswer: 1,
-      questionTitle: "What is an array ?",
-      questionBody: "It mean to be",
-      questionTags:['c','java'],
-      userPosted: "Khalid",
-      askedOn:"1 jun",
-      userId: 2,
-      answer:[
-        {
-          answerBody:"answer",
-          userAnswered:"Isu",
-          answeredOn:"1 jun",
-          userId: 1
-        }
-      ]
-    },{
-      _id:'3',
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswer: 1,
-      questionTitle: "What is main() methode ?",
-      questionBody: "It mean to be",
-      questionTags:['c','java'],
-      userPosted: "Kyara",
-      askedOn:"1 jun",
-      userId: 3,
-      answer:[
-        {
-          answerBody:"answer",
-          userAnswered:"khalid",
-          answeredOn:"1 jun",
-          userId: 2
-        }
-      ]
-    }
-  ]
+  const questionList= useSelector(state => state.questionsReducer)
+
+  // console.log(questionList)
+ 
+
+  // var questionList=[
+  //   {
+  //     _id:'1',
+  //     upVotes: 3,
+  //     downVotes: 2,
+  //     noOfAnswer: 1,
+  //     questionTitle: "What is a function ?",
+  //     questionBody: "It mean to be",
+  //     questionTags:['c','java'],
+  //     userPosted: "Isu",
+  //     askedOn:"1 jun",
+  //     userId: 1,
+  //     answer:[
+  //       {
+  //         answerBody:"answer",
+  //         userAnswered:"Kyara",
+  //         answeredOn:"1 jun",
+  //         userId: 3
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     _id:'2',
+  //     upVotes: 3,
+  //     downVotes: 2,
+  //     noOfAnswer: 1,
+  //     questionTitle: "What is an array ?",
+  //     questionBody: "It mean to be",
+  //     questionTags:['c','java'],
+  //     userPosted: "Khalid",
+  //     askedOn:"1 jun",
+  //     userId: 2,
+  //     answer:[
+  //       {
+  //         answerBody:"answer",
+  //         userAnswered:"Isu",
+  //         answeredOn:"1 jun",
+  //         userId: 1
+  //       }
+  //     ]
+  //   },{
+  //     _id:'3',
+  //     upVotes: 3,
+  //     downVotes: 2,
+  //     noOfAnswer: 1,
+  //     questionTitle: "What is main() methode ?",
+  //     questionBody: "It mean to be",
+  //     questionTags:['c','java'],
+  //     userPosted: "Kyara",
+  //     askedOn:"1 jun",
+  //     userId: 3,
+  //     answer:[
+  //       {
+  //         answerBody:"answer",
+  //         userAnswered:"khalid",
+  //         answeredOn:"1 jun",
+  //         userId: 2
+  //       }
+  //     ]
+  //   }
+  // ]
 
   const location= useLocation()
   return (
@@ -93,11 +100,11 @@ const Homemainbar = () => {
       </div>
       <div>
         {
-          questionList===null ?
+          questionList.data===null ?
           <p>Loading...</p> :
           <>
-            <p>{questionList.length} question</p>
-            <QuestionList questionList={questionList}/>
+            <p>{questionList.data.length} question</p>
+            <QuestionList questionList={questionList.data}/>
           </>
         }
       </div>
