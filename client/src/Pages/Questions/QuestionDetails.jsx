@@ -91,7 +91,7 @@ const QuestionDetails = () => {
               alert('Enter an answer before submitting')
             }else{
               console.log({answer})
-              dispatch(postAnswer({id,noOfAnswer: answerlength + 1,answerBody: answer,userAnswered: User.result.name}) )
+              dispatch(postAnswer({id,noOfAnswer: answerlength + 1 ,answerBody: answer,userAnswered: User.result.name}) )
             }
         }
     }
@@ -109,7 +109,7 @@ const QuestionDetails = () => {
                           <div className='question-details-container-2'>
                               <div className="question-votes">
                                   <img src={upvote} alt="Up" width='20px' className='votes-icon'/>
-                                  <p>{question.upVotes -question.downVotes}</p>
+                                  <p>{question.upVotes -question.downVotes || 0}</p>
                                   <img src={downvote} alt="Dwon"  width='20px' className='votes-icon'/>
                               </div>
                               <div>

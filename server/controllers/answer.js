@@ -11,7 +11,7 @@ export const postAnsers= async (req, res) => {
         updatedNoOfQuestion(_id, noOfAnswers)
         try {
            const updatedQuestion = await Question.findByIdAndUpdate(_id,{$addToSet:{'answer': [{answerBody,userAnswered,userId:req.userId}]}})
-           req.status(200).json(updatedQuestion)
+           res.status(200).send(updatedQuestion)
         } catch (error) {
             console.log(error)
             res.status(400).json(error)
