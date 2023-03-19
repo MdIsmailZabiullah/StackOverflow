@@ -10,6 +10,7 @@ export const askQuestion = (questionData, navigate) => async (dispatch) => {
     console.log(error)
   }
 }
+
 export const fetchAllQuestions= () => async (dispatch) => {
   try {
     const {data} = await api.getAllQuestions()

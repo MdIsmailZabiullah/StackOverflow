@@ -15,6 +15,7 @@ const QuestionDetails = () => {
   
     const {id}= useParams()
     const questionList= useSelector(state => state.questionsReducer)
+    
         
     // var questionList=[
     //     {
@@ -81,7 +82,7 @@ const QuestionDetails = () => {
     const navigate= useNavigate()
     const dispatch= useDispatch()
     const User = useSelector((state) => (state.currentUserReducer))
-    const handlepstanswer = (e, answerlength) =>{
+    const handlepstanswer = (e, answerLength) =>{
         e.preventDefault()
         if(User === null){
             alert('Login or Signup for answer a question')
@@ -91,7 +92,7 @@ const QuestionDetails = () => {
               alert('Enter an answer before submitting')
             }else{
               console.log({answer})
-              dispatch(postAnswer({id,noOfAnswer: answerlength + 1 ,answerBody: answer,userAnswered: User.result.name}) )
+              dispatch(postAnswer({id,noOfAnswer: answerLength + 1 ,answerBody: answer,userAnswered: User.result.name}) )
             }
         }
     }
