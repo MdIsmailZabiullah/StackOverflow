@@ -25,7 +25,7 @@ const handleSubmit = (e) => {
   e.preventDefault()
   // const author = User.result.name
   // console.log({author})
-  dispatch(askQuestion({questionTitle,questionBody,questionTags,userPosted: User.result.name },navigate))
+  dispatch(askQuestion({questionTitle,questionBody,questionTags,userPosted: User.result.name,userId: User?.result?._id },navigate))
   // console.log({questionTitle,questionBody,questionTags, userPosted: User.result.name})
 }
 

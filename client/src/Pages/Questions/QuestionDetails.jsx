@@ -2,6 +2,9 @@ import React, {useState} from 'react'
 import { useParams,Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
+import moment from'moment'
+import copy from 'copy-to-clipboard'
+import { useLocation } from 'react-router-dom'
 
 import upvote from '../../assets/sort-up.svg'
 import downvote from '../../assets/sort-down.svg'
@@ -82,6 +85,8 @@ const QuestionDetails = () => {
     const navigate= useNavigate()
     const dispatch= useDispatch()
     const User = useSelector((state) => (state.currentUserReducer))
+    const location= useLocation()
+    const url= 'http://localhost:3000'
     const handlepstanswer = (e, answerLength) =>{
         e.preventDefault()
         if(User === null){
@@ -91,10 +96,14 @@ const QuestionDetails = () => {
             if(answer === ''){
               alert('Enter an answer before submitting')
             }else{
-              console.log({answer})
-              dispatch(postAnswer({id,noOfAnswer: answerLength + 1 ,answerBody: answer,userAnswered: User.result.name}) )
+              dispatch(postAnswer({id,noOfAnswers: answerLength + 1 ,answerBody: answer,userAnswered: User.result.name,userId: User?.result?._id}) )
             }
         }
+    }
+
+    const handleShare = () =>{
+        copy(url + location.pathname)
+        alert('copied URL:-'+url + location.pathname) 
     }
   return (
     <div className='question-details-page'>
@@ -125,11 +134,15 @@ const QuestionDetails = () => {
                                     </div>
                                     <div className="question-action-user">
                                       <div>
-                                        <button type='button'>share</button>
-                                        <button type='button'>Delete</button>
+                                        <button type='button'onClick={handleShare}>share</button>
+                                        {
+                                          User?.result?._id === question?.userId &&(
+                                            <button type='button'>Delete</button>
+                                          )
+                                        }
                                       </div>
                                       <div>
-                                        <p>Asked on {question.askedOn}</p>
+                                        <p>Asked on {moment(question.askedOn).fromNow()}</p>
                                         <Link to={`/user/${question.userId}`} className='user-link' style={{color:'black'}}>
                                           <Avatar backgroundColor='orange' px='5px' py='12px' margin='0%' >{question.userPosted.charAt(0).toLocaleUpperCase()}</Avatar>
                                           <div>
@@ -143,9 +156,9 @@ const QuestionDetails = () => {
                           </div>
                         </section>
                         {
-                          question.noOfAnswer !== 0 && (
+                          question.noOfAnswers !== 0 && (
                             <section>
-                              <h3>{question.noOfAnswer} Answers</h3>
+                              <h3>{question.noOfAnswers} Answers</h3>
                               <DisplayAnswer key={question._id} question={question}/>
                             </section>
                           )

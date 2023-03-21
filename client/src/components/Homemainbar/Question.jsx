@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 
 const Question = ({question}) => {
   return (
@@ -22,7 +23,7 @@ const Question = ({question}) => {
                 ))
               }
             </div>
-            <p className='display-time' >Asked on {question.askedOn} by {question.userPosted}</p>
+            <p className='display-time' >Asked  {moment(question.askedOn).fromNow()} by {question.userPosted}</p>
           </div>
         </div>      
     </div>
