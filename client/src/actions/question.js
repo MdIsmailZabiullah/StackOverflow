@@ -31,3 +31,12 @@ export const  postAnswer=(answerdata) => async(dispatch) =>{
   }
 }
 
+export const deleteQuestion = (id,navigate) => async (dispatch) => {
+  try{
+  api.deleteQuestion(id)
+  dispatch(fetchAllQuestions())
+  navigate('/')
+  }catch(error){
+      console.log(error)
+  }
+}

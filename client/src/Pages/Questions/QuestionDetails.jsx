@@ -11,7 +11,7 @@ import downvote from '../../assets/sort-down.svg'
 import './QuestionDetails.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
-import {postAnswer} from '../../actions/question'
+import {postAnswer, deleteQuestion} from '../../actions/question'
 
 
 const QuestionDetails = () => {
@@ -105,6 +105,10 @@ const QuestionDetails = () => {
         copy(url + location.pathname)
         alert('copied URL:-'+url + location.pathname) 
     }
+
+    const handleDelete = ()=> {
+      dispatch(deleteQuestion(id,navigate))
+    }
   return (
     <div className='question-details-page'>
       {
@@ -137,7 +141,7 @@ const QuestionDetails = () => {
                                         <button type='button'onClick={handleShare}>share</button>
                                         {
                                           User?.result?._id === question?.userId &&(
-                                            <button type='button'>Delete</button>
+                                            <button type='button' onClick={handleDelete}>Delete</button>
                                           )
                                         }
                                       </div>

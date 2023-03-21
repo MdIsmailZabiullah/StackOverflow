@@ -17,11 +17,30 @@ export const postAnsers= async (req, res) => {
             res.status(400).json(error)
         } 
 }
-const updatedNoOfQuestion = async(_id, noOfAnswers) => {
+ const updatedNoOfQuestion = async(_id, noOfAnswers) => {
     try {
         await Question.findByIdAndUpdate(_id, {$set: {'noOfAnswers': noOfAnswers}})
 
     } catch (error) {
         console.log(error)
     } 
+}
+export const deleteAnsers = async(req,res) => {
+    const {id: _id}= req.params;
+    const {answerId,noOfAnswers}= req.body;
+    if(!mongoose.Types.ObjectId.isValid(_id)){
+        return res.status(404).send('question unavailable')
+    }
+    if(!mongoose.Types.ObjectId.isValid(answerId)){
+        return res.status(404).send('Answer unavailable')
+    }
+    updatedNoOfQuestion(_id, noOfAnswers)
+    try {
+        await Question.updateOne(
+            {_id},
+            {$pull: {'answer':{_id:answerId}}}
+        )
+    } catch (error) {
+        res.status(405).json(error)
+    }
 }
