@@ -25,7 +25,7 @@ export const postAnsers= async (req, res) => {
         console.log(error)
     } 
 }
-export const deleteAnsers = async(req,res) => {
+export const deleteAnswer = async(req,res) => {
     const {id: _id}= req.params;
     const {answerId,noOfAnswers}= req.body;
     if(!mongoose.Types.ObjectId.isValid(_id)){
@@ -40,6 +40,7 @@ export const deleteAnsers = async(req,res) => {
             {_id},
             {$pull: {'answer':{_id:answerId}}}
         )
+        res.status(200).json({message:"succesfully deleted...."})
     } catch (error) {
         res.status(405).json(error)
     }
