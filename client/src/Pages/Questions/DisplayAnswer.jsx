@@ -12,13 +12,13 @@ const DisplayAnser = ({ question, handleShare }) => {
   const User = useSelector((state) => state.currentUserReducer);
   const dispatch = useDispatch();
 
-  const handleDelete = (answerId, noOfAnswer) => { 
-        console.log(1)
-        dispatch(deleteAnswer(id, answerId, noOfAnswer));
+  const handleDelete = (answerId, noOfAnswers) => { 
+        console.log('successfully deleted')
+        dispatch(deleteAnswer(id, answerId, noOfAnswers));
         
   };
 
-  console.log(question)
+  // console.log(question)
   return (
     <div>
       {question.answer.map((ans) => (
@@ -33,7 +33,7 @@ const DisplayAnser = ({ question, handleShare }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    handleDelete(ans._id, question.noOfAnswers);
+                    handleDelete(ans._id, question.noOfAnswers-1);
                   }}
                 >
                   Delete
