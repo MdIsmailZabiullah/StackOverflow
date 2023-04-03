@@ -39,7 +39,7 @@ const Question = ({ question }) => {
   return (
     <div className="display-question-container">
       <div className="display-vote-ans">
-        <p>{question.upVote.length - question.downVote.length || 0}</p>
+        <p>{question.upVote.length -question.downVote.length}</p>
         <p>votes</p>
       </div>
       <div className="display-vote-ans">
