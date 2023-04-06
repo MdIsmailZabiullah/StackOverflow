@@ -2,6 +2,8 @@ import express from 'express'
 
 import {signup, login} from '../controllers/auth.js'
 import {getAllUsers} from '../controllers/users.js'
+import auth from '../middlewares/auth.js'
+import {updateProfile} from '../controllers/users.js'
 
     const router = express.Router()
 
@@ -9,5 +11,6 @@ import {getAllUsers} from '../controllers/users.js'
     router.post('/login', login)
 
     router.get('/getAllUsers',getAllUsers)
+    router.patch('/update/:id' , auth, updateProfile)
 
 export default router;

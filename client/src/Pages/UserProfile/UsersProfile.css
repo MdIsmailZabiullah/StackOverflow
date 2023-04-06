@@ -1,9 +1,16 @@
-.user-details-container{
+.home-container-1{
     width: 100%;
-    margin-top: 50px;
+    display: flex;
+    background-color: #f7c0e7;
+}
+
+.user-details-container{
+    width: 100vh;
+    margin-top: 80px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    background-color: #dbd9d9;
 }
 
 .user-details{

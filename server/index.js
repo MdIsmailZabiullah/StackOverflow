@@ -31,11 +31,11 @@ app.use('/answer',AnswerRoutes)
 
 const PORT = process.env.PORT || 5000
 
-const CONNECTION_URL= "mongodb+srv://Ismail:mlpgV16RCDJ1W6nt@stackoverflow.ab2r52z.mongodb.net/?retryWrites=true&w=majority"
+const DATABASE_URL= process.env.CONNECTION_URL
 // const CONNECTION_URL= "mongodb+srv://Ismail:mlpgV16RCDJ1W6nt@stackoverflow.ab2r52z.mongodb.net/test"
 
 
 mongoose.set('strictQuery', false);
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT,() => {console.log(`server running on ${PORT}`)}))
     .catch((err) => console.log(err.message))

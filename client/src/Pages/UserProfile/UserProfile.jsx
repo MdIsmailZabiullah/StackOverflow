@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBirthdayCake, faPen } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
 
-import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
+import LeftSidebar from '../../components/Leftsidebar/Leftsidebar'
 import Avatar from '../../components/Avatar/Avatar'
 import EditProfileForm from './EditProfileForm'
 import ProfileBio from './ProfileBio'
@@ -18,6 +18,7 @@ const UserProfile = () => {
     const currentProfile = users.filter((user) => user._id === id)[0]
     const currentUser = useSelector((state) => state.currentUserReducer)
     const [Switch, setSwitch] = useState(false)
+    // console.log(currentProfile)
 
     return (
         <div className='home-container-1'>

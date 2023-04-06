@@ -154,7 +154,7 @@ const QuestionDetails = () => {
                                       </div>
                                       <div>
                                         <p>Asked on {moment(question.askedOn).fromNow()}</p>
-                                        <Link to={`/user/${question.userId}`} className='user-link' style={{color:'black'}}>
+                                        <Link to={`/users/${question.userId}`} className='user-link' style={{color:'black'}}>
                                           <Avatar backgroundColor='orange' px='5px' py='12px' margin='0%' >{question.userPosted.charAt(0).toLocaleUpperCase()}</Avatar>
                                           <div>
                                             {question.userPosted}
@@ -170,7 +170,7 @@ const QuestionDetails = () => {
                           question.noOfAnswers !== 0 && (
                             <section>
                               <h3>{question.noOfAnswers} Answers</h3>
-                              <DisplayAnswer key={question._id} question={question}/>
+                              <DisplayAnswer key={question._id} question={question} handleShare={handleShare} />
                             </section>
                           )
                         }
